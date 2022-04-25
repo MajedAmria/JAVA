@@ -17,9 +17,19 @@ public class AlfredQuotes {
     }
     
     public String respondBeforeAlexis(String conversation) {
-        // YOUR CODE HERE
-        return conversation;
+        if(conversation.indexOf("Alexis") > -1) {
+            return "She's really of no help. What can I get for you?";
+        }
+
+        if (conversation.indexOf("Alfred") > -1) {
+            return "At your service, naturally. How may I be of assistance?";
+        }
+
+        return "Right. And with that I shall retire.";
+    
     }
+
+   
     
 	// NINJA BONUS
 	// See the specs to overload the guessGreeting method
