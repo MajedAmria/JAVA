@@ -17,10 +17,14 @@ public class Test {
 			for (int i=0 ; i <fruits.length ; i++){
 				System.out.print(fruits[i]+" ");
 			}
+			System.out.println();
 			HashMap<String, String> userMap = new HashMap<String, String>();
         userMap.put("nninja@codingdojo.com", "Nancy Ninja");
+		userMap.put("nninja@", "hosni");
+		userMap.put("nninja@codingdojo.com", "hosni");
         userMap.put("ssamurai@codingdojo.com", "Sam Samurai");
         userMap.put("wwizard@codingdojo.com", "Walter Wizard");
+		System.out.println(userMap.size());
 		System.out.println(userMap);
         // get the keys by using the keySet method
         Set<String> keys = userMap.keySet();
