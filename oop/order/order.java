@@ -1,4 +1,6 @@
+package order;
 import java.util.ArrayList;
+
 public class order {
     String name;
     double total;
