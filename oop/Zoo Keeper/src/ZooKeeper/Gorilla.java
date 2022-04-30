@@ -17,6 +17,6 @@ public class Gorilla extends Mammal {
 	}
 	public void climb() {
 		System.out.println("Gorilla is climbing now");
-		this.setEnergyLevel(this.getEnergyLevel()+10);
+		this.setEnergyLevel(this.getEnergyLevel()-10);
 	}
 }
