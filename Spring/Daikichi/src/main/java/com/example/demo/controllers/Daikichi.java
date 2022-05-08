@@ -12,10 +12,10 @@ public class Daikichi {
     }
 	@RequestMapping("/today")
     public String today() {
-            return "today";
+            return "Today you will find luck in all your endeavors!";
     }
 	@RequestMapping("/tommorw")
     public String tommorw() {
-            return "tommorw";
+            return "Tomorrow, an opportunity will arise, so be sure to be open to new ideas!";
     }
 }
