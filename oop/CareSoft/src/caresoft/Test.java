@@ -43,7 +43,7 @@ public class Test {
         donnaNoble.accessAuthorized(4321);
         donnaNoble.accessAuthorized(7);
         donnaNoble.accessAuthorized(28);
-        
+        donnaNoble.newIncident("hello");
         System.out.println(donnaNoble.reportSecurityIncidents());
 
 	}

@@ -34,15 +34,24 @@ public class Physician extends User implements HIPAACompliantUser{
 
 	@Override
 	public boolean assignPin(int pin) {
-		// TODO Auto-generated method stub
-		return true;
+		if(pin>4 || pin<4) {
+			return false;
+		}
+		else {
+			return true;
+		}
+		
 	}
 
 
 	@Override
 	public boolean accessAuthorized(Integer confirmedAuthID) {
-		// TODO Auto-generated method stub
-		return true;
+		if(this.id==confirmedAuthID) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 }
