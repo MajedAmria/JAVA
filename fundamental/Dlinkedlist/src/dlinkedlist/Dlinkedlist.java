@@ -72,15 +72,40 @@ public class Dlinkedlist {
 	        	    }    
 	        }    
 	   }
-	    public void deletelist(int data) {
-	    	Node delete= head;
-	    	while(delete!=null) {
-	    		if(delete.data==data) {
-	    			delete.next.prev=delete.prev;
-	    		}
-	    		
-	    	}
+	    public void deletenode(Node del) {
+
+	    	if (head == null || del == null) {
+	           System.out.println("empty");
+	        }
+	 
+	        // If node to be deleted is head node
+	        if (head == del) {
+	            head = del.next;
+	        }
+	 
+	        // Change next only if node to be deleted
+	        // is NOT the last node
+	        if (del.next != null) {
+	            del.next.prev = del.prev;
+	        }
+	 
+	        // Change prev only if node to be deleted
+	        // is NOT the first node
+	        if (del.prev != null) {
+	            del.prev.next = del.next;
+	        }
+	 
 	    }
+	    
+	    public void deletelist(int data) {
+	        Node current = head;
+	        while (current != null && current.data != data) {
+	            current = current.next;
+	        }
+	        deletenode(current);
+	        // Note: We silently do nothing if 'data' not found
+	    }
+	    
 	    public static void main(String[] args) {    
 	  
 	    	Dlinkedlist dll = new Dlinkedlist();    
@@ -100,7 +125,7 @@ public class Dlinkedlist {
 	        dll.showData();
 	        System.out.println("**************");
 	        dll.reversData();
-	        dll.deletelist(500);
+	        dll.deletelist(900);
 	        dll.showData();
 	        
 	    }    
