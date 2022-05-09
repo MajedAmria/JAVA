@@ -11,6 +11,8 @@
 <p>You have visited <a href="/">http//your server</a> <c:out value="${count}"/> times</p><br>
 <a href="/">Test another visit?</a>
 <br>
-<button>Rest</button>
+   <form action='/rest' method='GET'>
+    	<input type='submit' value='rest'>
+    </form>
 </body>
 </html>

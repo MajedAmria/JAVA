@@ -18,7 +18,6 @@ public class Counter {
 			else {
 				session.setAttribute("count", ((Integer) session.getAttribute("count")) + 1);
 			}
-		session.setAttribute("count", 0);
         return "index.jsp";
     }
 	
@@ -28,6 +27,11 @@ public class Counter {
         return "counter.jsp";
     }
 	
+	@RequestMapping("/rest")
+    public String rest(HttpSession session) {
+		session.setAttribute("count", 0);
+        return "counter.jsp";
+    }
 
 	
 	
