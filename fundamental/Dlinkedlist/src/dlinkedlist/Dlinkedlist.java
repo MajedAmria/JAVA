@@ -64,43 +64,36 @@ public class Dlinkedlist {
 	         }  
 	        else 
 	        {
-	        	System.out.println("Doubly Linked List consists of the following Revers Nodes: ");    
+	        	System.out.println("\nRevers Doubly Linked List  ");    
 	        	while(current != null) {
-	        		System.out.print(current.data + "\n");  
+	        		System.out.print(current.data + "<==>");  
 	        		current = current.prev;
 	        		    
 	        	    }    
 	        }    
 	   }
-	    public void deletenode(Node del) {
-
-	    	if (head == null || del == null) {
-	           System.out.println("empty");
-	        }
-	 
-	        if (head == del) {
-	            head = del.next;
-	        }
-	 
-	        if (del.next != null) {
-	            del.next.prev = del.prev;
-	        }
-	 
-	      
-	        if (del.prev != null) {
-	            del.prev.next = del.next;
-	        }
-	 
-	    }
-	    
-	    public void delete(int data) {
-	        Node current = head;
-	        while (current != null && current.data != data) {
-	            current = current.next;
-	        }
-	        deletenode(current);
-	    }
-	    
+  
+	     public void del(int data) {
+	    	   Node current = head;
+		        while (current.data != data) {
+		            current = current.next;
+		        }
+		        if(current==head) {
+		        	head=current.next;
+		        }
+		       
+		        else if(current !=null) {
+		        	if(current.next!=null) {
+		        		current.next.prev=current.prev;
+		        	    current.prev.next = current.next;
+		        }
+		        	else {
+		        		 current.prev.next=null;
+		        	}
+		        	
+		        }
+		        
+	     }
 	    public static void main(String[] args) {    
 	  
 	    	Dlinkedlist dll = new Dlinkedlist();    
@@ -119,8 +112,8 @@ public class Dlinkedlist {
 	    
 	        dll.showData();
 	        
-//	        dll.reversData();
-	        dll.delete(500);
+	        dll.reversData();
+	        dll.del(100);
 	        dll.showData();
 	        
 	    }    
