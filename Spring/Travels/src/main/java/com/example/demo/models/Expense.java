@@ -24,8 +24,7 @@ public class Expense {
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
 	    @NotNull( message="must be not null")
-	    @Size(min = 5, max = 200)
-	    private String expense;
+	    private String name;
 	    @NotNull( message="must be not null")
 	    @Size(min = 5, max = 200)
 	    private String vendor;
@@ -47,7 +46,7 @@ public class Expense {
 	    
 	    public Expense(String expensename,String vendor,double amount, String description) {
 			
-			this.expense = expensename;
+			this.name = expensename;
 			this.vendor = vendor;
 			this.amount = amount;
 			this.description = description;
@@ -57,12 +56,16 @@ public class Expense {
 			return id;
 		}
 
-		public String getExpense() {
-			return expense;
+		public void setId(Long id) {
+			this.id = id;
 		}
 
-		public void setExpense(String expense) {
-			this.expense = expense;
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
 		}
 
 		public String getVendor() {

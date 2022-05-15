@@ -1,17 +1,23 @@
-class linkedlist{
+class linkedlist<T>{
   
-    Node head; 
-    public linkedlist(int data) {
-        
-    }
-  
+    int key;
+    T value;
+    linkedlist next;
 
-    class Node {
-        int data;
-        Node next;
-
-        Node(int d) { 
-            data = d; 
-        }
+    public linkedlist(int key,T value) {
+        this.key=key;
+        this.value=value;
+        next=null;
     }
+    public linkedlist() {
+        next=null;
+    }
+  public int getkey(){
+      return key;
+  }
+
+  public T getvalue(){
+      return value;
+  }
+    
 }
