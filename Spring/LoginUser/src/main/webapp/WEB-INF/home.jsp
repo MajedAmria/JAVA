@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!-- c:out ; c:forEach etc. --> 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- Formatting (dates) --> 
@@ -19,19 +20,13 @@
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<table class="table table-dark table-striped">
-  <tr>
-  <th >First Name</th>
-  <th >Last Name</th>
-   <th >Age</th>
-  </tr>
-  <c:forEach var="dojo" items="${Dojo}">
-  <tr>
-  <td><c:out value="${dojo.ninjas.firstName}"/></td>
-  <td><c:out value="${dojo.ninjas.lastName}"/></td>
-  <td><c:out value="${dojo.ninjas.age}"/></td>
-  </tr>
- </c:forEach>
-</table>
+<div class="container-sm mt-3">
+		<div class="row justify-content-center">
+			<div class="col-md-10">
+			<h2>Welcome <c:out value="${currentUser.userName}"/></h2>
+			<h5><a href="/logout" style="text-decoration: none;">Logout</a></h5>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

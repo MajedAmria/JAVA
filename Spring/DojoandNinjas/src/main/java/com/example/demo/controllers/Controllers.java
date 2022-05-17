@@ -29,12 +29,13 @@ public class Controllers {
 	@GetMapping("/")
 	 public String index(Model model,@ModelAttribute("dojo") Dojo dojo) {
 			List<Dojo> dojos=dojoservice.alldojos();
+			
 			model.addAttribute("Dojo",dojos);
 		 return "show.jsp";
 	 }
 	
 	@GetMapping("/dojo/new")
-	 public String dojo() {
+	 public String dojo(@ModelAttribute("dojo") Dojo dojo) {
 
 		 return "newdojo.jsp";
 		 
@@ -46,7 +47,7 @@ public class Controllers {
 	}
 	
 	@GetMapping("/ninja/new")
-	 public String ninja() {
+	 public String ninja(@ModelAttribute("ninja") Ninja ninja) {
 
 		 return "newninja.jsp";
 		 
