@@ -25,11 +25,11 @@
   <th >Last Name</th>
    <th >Age</th>
   </tr>
-  <c:forEach var="dojo" items="${Dojo}">
+  <c:forEach var="dojo" items="${Ninja}">
   <tr>
-  <td><c:out value="${dojo.ninjas.firstName}"/></td>
-  <td><c:out value="${dojo.ninjas.lastName}"/></td>
-  <td><c:out value="${dojo.ninjas.age}"/></td>
+  <td><c:out value="${dojo.firstName}"/></td>
+  <td><c:out value="${dojo.lastName}"/></td>
+  <td><c:out value="${dojo.age}"/></td>
   </tr>
  </c:forEach>
 </table>

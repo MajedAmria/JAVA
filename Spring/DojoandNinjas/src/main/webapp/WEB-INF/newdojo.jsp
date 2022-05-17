@@ -24,6 +24,7 @@
 <form:form action="/dojo" method="post" modelAttribute="dojo">
   <div class="row mb-3">
     <form:label for="inputPassword3"  path="name" class="col-sm-2 col-form-label">Name</form:label>
+    <form:errors path="name"/>
     <div class="col-sm-10">
       <form:input type="text" path="name" class="form-control" id="inputPassword3"/>
     </div>

@@ -10,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="ninjas")
@@ -18,8 +21,11 @@ public class Ninja {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
+    @NotNull
     private int age;
     @Column(updatable=false)
     private Date createdAt;
@@ -95,5 +101,13 @@ public class Ninja {
 	public void setDojo(Dojo dojo) {
 		this.dojo = dojo;
 	}
+	 @PrePersist
+	    protected void onCreate(){
+	        this.createdAt = new Date();
+	    }
+	    @PreUpdate
+	    protected void onUpdate(){
+	        this.updatedAt = new Date();
+	    }
    
 }

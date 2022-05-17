@@ -24,28 +24,31 @@
   <div class="row mb-3">
     <form:label  path="dojo" class="col-sm-2 col-form-label">Dojo:</form:label>
     <div class="col-sm-10">
-    <form:select path="dojo"  class="form-control" id="inputEmail3"/>
+    <form:select path="dojo"  class="form-control" id="inputEmail3">
     <c:forEach var="onedojo" items="${Dojo}">
-  		<form:option value="onedojo.id">
-  		<c:out value="${onedojo.name}"/>
-  		</form:option>
+  		<form:option value="${onedojo.name}"/>
+  	
  </c:forEach>
+ </form:select>
     </div>
   </div>
   <div class="row mb-3">
     <form:label for="inputPassword3" path="firstName" class="col-sm-2 col-form-label">First Name:</form:label>
+   <form:errors path="firstName" />
     <div class="col-sm-10">
       <form:input type="text" path="firstName" class="form-control" id="inputPassword3"/>
     </div>
   </div>
   <div class="row mb-3">
     <form:label for="inputPassword3"  path="lastName" class="col-sm-2 col-form-label">Last Name</form:label>
+    <form:errors path="lastName"/>
     <div class="col-sm-10">
       <form:input type="text" path="lastName" class="form-control" id="inputPassword3"/>
     </div>
   </div>
   <div class="row mb-3">
     <form:label for="inputPassword3"  path="age" class="col-sm-2 col-form-label">Age</form:label>
+    <form:errors path="age"/>
     <div class="col-sm-10">
       <form:input type="text" path="age" class="form-control" id="inputPassword3"/>
     </div>
