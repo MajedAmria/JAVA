@@ -57,7 +57,7 @@ public class Controllers {
 	@GetMapping("/ninja/new")
 	 public String ninja(Model model, @ModelAttribute("ninja") Ninja ninja) {
 		List<Dojo> dojos=dojoservice.alldojos();
-		model.addAttribute("Dojo",dojos);
+		model.addAttribute("Dojos",dojos);
 		 return "newninja.jsp";
 		 
 	 }

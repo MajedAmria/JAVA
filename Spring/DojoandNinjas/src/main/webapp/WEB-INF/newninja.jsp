@@ -25,8 +25,11 @@
     <form:label  path="dojo" class="col-sm-2 col-form-label">Dojo:</form:label>
     <div class="col-sm-10">
     <form:select path="dojo"  class="form-control" id="inputEmail3">
-    <c:forEach var="onedojo" items="${Dojo}">
-  		<form:option value="${onedojo.name}"/>
+    <c:forEach var="onedojo" items="${Dojos}">
+  		<form:option value="${onedojo.id}">
+  		<c:out value="${onedojo.name}" />
+  		</form:option>
+  		
   	
  </c:forEach>
  </form:select>
