@@ -44,7 +44,7 @@
  </form:select>
     </div>
   </div>
-   <input type="submit" value="Create" class="btn btn-dark"/>
+   <input type="submit" value="Add" class="btn btn-dark"/>
   </form:form>
 </main>
 </body>

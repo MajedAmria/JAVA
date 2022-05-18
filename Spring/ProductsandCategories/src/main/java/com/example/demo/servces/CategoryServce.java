@@ -30,4 +30,9 @@ public class CategoryServce {
 	public Category findbyId(Long id) {
 		return categoryrepo.findById(id).get();
 	}
+	
+	public Category updatecategory(Category c){
+//		categoryrepo.findById(c.getId());
+		return categoryrepo.save(c);
+	}
 }

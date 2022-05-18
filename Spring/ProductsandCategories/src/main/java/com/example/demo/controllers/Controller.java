@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.example.demo.models.Category;
 import com.example.demo.models.Product;
@@ -95,10 +96,11 @@ public class Controller {
 		return "categorypage.jsp";
 	}
 	
-//	@PostMapping("/add/{id}")
-//	public String addCategoryToProduct(Model model,@ModelAttribute("product") Product product,@PathVariable Long id){
-//		model.addAttribute("category",catServce.findbyId(id));
-//		return "productpage.jsp";
-//	}
+//	@PutMapping("/category/{id}")
+//    public String update(@ModelAttribute("category") Category category) {
+//		catServce.updatecategory(category);
+//            return "redirect:/category/new";
+//        }
+//    
 	
 }

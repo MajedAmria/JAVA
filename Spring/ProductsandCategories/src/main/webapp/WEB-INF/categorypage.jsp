@@ -32,6 +32,7 @@
 <hr>
 <h1>Add Product</h1>
 <form:form action="/category/new" method="post" modelAttribute="category">
+
   <div class="row mb-3">
     <div class="col-sm-10">
     <form:select path="products"  class="form-control" id="inputEmail3">
@@ -44,7 +45,7 @@
  </form:select>
     </div>
   </div>
-   <input type="submit" value="Create" class="btn btn-dark"/>
+   <input type="submit" value="Add" class="btn btn-dark"/>
   </form:form>
 </main>
 </body>
