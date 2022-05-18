@@ -31,7 +31,7 @@
 </ul>
 <hr>
 <h1>Add Product</h1>
-<form:form action="/category/new" method="post" modelAttribute="category">
+<form:form action="/category/${category.id}" method="post" modelAttribute="category">
 
   <div class="row mb-3">
     <div class="col-sm-10">

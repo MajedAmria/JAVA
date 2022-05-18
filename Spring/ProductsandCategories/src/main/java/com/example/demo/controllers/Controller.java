@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.models.Category;
 import com.example.demo.models.Product;
@@ -79,28 +80,40 @@ public class Controller {
 	public String productpage(Model model,@PathVariable Long id) {
 		
 		List<Category> categories = catServce.findbyproducts(proServce.findbyId(id));
-		List<Category> categorie=catServce.allCategories();
+		List<Category> categorie=catServce.findbyProductsNotContan(proServce.findbyId(id));
 		model.addAttribute("product",proServce.findbyId(id));
 		model.addAttribute("category",categories);
 		model.addAttribute("cat",categorie);
 		return "productpage.jsp";
 	}
 	
+	@PostMapping("/product/{id}")
+	public String addProductToCategory(@PathVariable("id")Long product_id,@RequestParam("categories")Long category_id) {
+		Product thisProduct=proServce.findbyId(product_id);
+		Category thisCategory=catServce.findbyId(category_id);
+		
+		proServce.addCategoryToProduct(thisProduct,thisCategory);
+		return "redirect:/product/"+product_id;
+	}
+	
 	@GetMapping("/category/{id}")
 	public String categorypage(Model model,@PathVariable Long id) {
 		List<Product> products = proServce.findbycategories(catServce.findbyId(id));
-		List<Product> product=proServce.allProducts();
+		List<Product> product=proServce.findbyCategoriesNotContan(catServce.findbyId(id));
 		model.addAttribute("category",catServce.findbyId(id));
 		model.addAttribute("product",products);
 		model.addAttribute("pro",product);
 		return "categorypage.jsp";
 	}
 	
-//	@PutMapping("/category/{id}")
-//    public String update(@ModelAttribute("category") Category category) {
-//		catServce.updatecategory(category);
-//            return "redirect:/category/new";
-//        }
-//    
+	@PostMapping("/category/{id}")
+	public String addCategoryToPtoduct(@PathVariable("id")Long category_id,@RequestParam("products")Long product_id) {
+		Product thisProduct=proServce.findbyId(product_id);
+		Category thisCategory=catServce.findbyId(category_id);
+		
+		catServce.addProductsToCategory(thisCategory,thisProduct);
+		return "redirect:/category/"+category_id;
+	}
+   
 	
 }

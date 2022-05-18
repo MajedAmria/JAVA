@@ -35,5 +35,13 @@ public class ProductServce {
 		return productrepo.findAllByCategories(category);
 	}
     
-
+	public List<Product> findbyCategoriesNotContan(Category category){
+		return productrepo.findByCategoriesNotContains(category);
+	}
+	
+	
+	public void addCategoryToProduct(Product this_product,Category selcted_category) {
+		this_product.getCategories().add(selcted_category);
+		productrepo.save(this_product);
+	}
 }

@@ -31,8 +31,12 @@ public class CategoryServce {
 		return categoryrepo.findById(id).get();
 	}
 	
-	public Category updatecategory(Category c){
-//		categoryrepo.findById(c.getId());
-		return categoryrepo.save(c);
+	public List<Category> findbyProductsNotContan(Product product){
+		return categoryrepo.findByProductsNotContains(product);
+	}
+	
+	public void addProductsToCategory(Category this_category,Product selcted_product) {
+		this_category.getProducts().add(selcted_product);
+		categoryrepo.save(this_category);
 	}
 }

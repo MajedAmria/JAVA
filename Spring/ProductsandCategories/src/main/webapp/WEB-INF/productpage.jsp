@@ -31,7 +31,7 @@
 </ul>
 <hr>
 <h1>Add Category</h1>
-<form:form action="/product/new" method="post" modelAttribute="product">
+<form:form action="/product/${product.id}" method="post" modelAttribute="product">
   <div class="row mb-3">
     <div class="col-sm-10">
     <form:select path="categories"  class="form-control" id="inputEmail3">
