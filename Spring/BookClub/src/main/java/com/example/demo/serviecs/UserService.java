@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.example.demo.models.LoginUser;
 import com.example.demo.models.User;
 import com.example.demo.reposetories.UserRepository;
 
@@ -43,7 +44,7 @@ public class UserService {
         	return newUser;
         }
     }
-    public User login(User newLoginObject, BindingResult result) {
+    public User login(LoginUser newLoginObject, BindingResult result) {
     	if(result.hasErrors()) {
     		return null;
     	}

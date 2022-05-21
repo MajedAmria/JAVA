@@ -44,6 +44,10 @@ public class Book {
     private User user;
     
     
+	public Book() {
+		
+	}
+
 	public Book(String title,String author,String thought, User user) {
 		this.title = title;
 		this.author = author;
