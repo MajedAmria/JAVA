@@ -42,11 +42,16 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
+   
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="borrow_id")
+    private User borrowedBy;
     
     
 	public Book() {
 		
 	}
+
 
 	public Book(String title,String author,String thought, User user) {
 		this.title = title;
@@ -55,6 +60,8 @@ public class Book {
 		this.user = user;
 	}
 	
+
+
 	public Long getId() {
 		return id;
 	}
@@ -94,6 +101,16 @@ public class Book {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+
+	public User getBorrowedBy() {
+		return borrowedBy;
+	}
+
+	public void setBorrowedBy(User borrowedBy) {
+		this.borrowedBy = borrowedBy;
+	}
+
 
 	// other getters and setters removed for brevity
     @PrePersist

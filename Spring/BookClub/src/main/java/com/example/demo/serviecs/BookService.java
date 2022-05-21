@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.Book;
+import com.example.demo.models.User;
 import com.example.demo.reposetories.BookRepository;
 
 @Service
@@ -32,6 +33,20 @@ private final BookRepository bookRepository;
             return null;
         }
 }
+    
+
+	 public Book updatebook(Book book) {
+
+	    	return bookRepository.save(book);
+	    	
+	    	
+	    }
+    
+    public List<Book> findAll(User user) {
+    	List<Book> listborrow=bookRepository.findAllByBorrowedBy(user);
+    	return listborrow ;
+    
+    }
     public void deleteBook(Long id) {
         
         bookRepository.deleteById(id);

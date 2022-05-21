@@ -8,10 +8,12 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.example.demo.models.Book;
 import com.example.demo.models.LoginUser;
@@ -119,6 +121,80 @@ public class HomeController {
 		model.addAttribute("currbook",currbook);
 		 return "show.jsp";
 	 }
+	
+	@GetMapping("/bookmarket")
+	 public String bookmarket(Model model,HttpSession session) {
+	    	if(session.getAttribute("userId")!=null) {
+	    		Long userId=(Long)session.getAttribute("userId");
+	    		User currenUser=userServ.findbyId(userId);
+	    		model.addAttribute("currentUser", currenUser);
+	    		List<Book> books=bookServ.findAll(null);
+				model.addAttribute("notborrowbooks",books);
+				List<Book> bo=bookServ.findAll(currenUser);
+				model.addAttribute("toreturnbook",bo);
+				return "bookmarket.jsp";
+	    	}
+	    	return "redirect:/";
+	 }
+	
+	@GetMapping("/edit/{id}/update")
+    public String edit(@PathVariable("id") Long id, Model model) {
+		Book book = bookServ.findBook(id);
+        model.addAttribute("book", book);
+        return "edit.jsp";
+    }
+	 @PutMapping("/edit/{id}")
+	    public String update(@Valid @ModelAttribute("book") Book book ,HttpSession session, BindingResult result) {
+	        if (result.hasErrors()) {
+	            return "edit.jsp";
+	        } else {
+	        	Long userId=(Long)session.getAttribute("userId");
+	    		User currenUser=userServ.findbyId(userId);
+	    		book.setUser(currenUser);
+	        	bookServ.updatebook(book);
+	            return "redirect:/books";
+	        }
+	    }
+	 
+	 @GetMapping("/delete/{id}")
+	    public String destroy(@PathVariable("id") Long id) {
+		 bookServ.deleteBook(id);
+	        return "redirect:/bookmarket";
+	    }
+	 
+	@GetMapping("/borrow/{id}")
+	public String Borrow(@PathVariable("id") Long id,HttpSession session) {
+		if(session.getAttribute("userId")!=null) {
+			Long userId=(Long)session.getAttribute("userId");
+			Book thisbook=bookServ.findBook(id);
+			Long user_Id=thisbook.getUser().getId();
+    		User currenUser=userServ.findbyId(userId);
+    		if(userId!=user_Id) {
+    			thisbook.setBorrowedBy(currenUser);
+    			bookServ.updatebook(thisbook);
+    			return "redirct:/books";
+    		}
+			
+		}
+		return "redirct:/books";
+	}
+	
+	@GetMapping("/return/{id}")
+	public String Return(@PathVariable("id") Long id,HttpSession session) {
+		if(session.getAttribute("userId")!=null) {
+			Long userId=(Long)session.getAttribute("userId");
+			Book thisbook=bookServ.findBook(id);
+			Long user_Id=thisbook.getUser().getId();
+//    		User currenUser=userServ.findbyId(userId);
+    		if(userId!=user_Id) {
+    			thisbook.setBorrowedBy(null);
+    			bookServ.updatebook(thisbook);
+    			return "redirct:/books";
+    		}
+    		return "redirct:/books";
+		}
+		return "redirct:/";
+	}
 	
     @GetMapping("/logout")
     public String logout(HttpSession session) {

@@ -53,14 +53,13 @@ public class User {
     
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<Book> books;
-  
-    public User() {
+ 
+
+	public User() {
     	
     }
 
-
-
-	public User( String userName,String email,String password, String confirm,List<Book> books) {
+	public User(String userName,String email,String password,String confirm,List<Book> books) {
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
@@ -122,6 +121,11 @@ public class User {
 		this.confirm = confirm;
 	}
 	
+
+	
+
+
+
 	// other getters and setters removed for brevity
     @PrePersist
     protected void onCreate(){
