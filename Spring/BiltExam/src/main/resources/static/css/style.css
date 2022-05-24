@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+*{
+	margin: 0 auto;
+}
+.main{
+	margin-top:20px;
+	display: flex;
+	
+}
+.body{
+	margin-left: 19%;
+}
+.col-md-10{
+	display: flex;
+	justify-content: space-between;
+}
+.col{
+color: green
+background-color green;
+
+}
