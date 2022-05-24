@@ -53,7 +53,7 @@
   <td><c:out value="${baby.gender}"/></td>
  
   <td><c:out value="Origin:${baby.origin}"/></td>
-  <td><c:out value="${counter}"></c:out></td>
+  <td><c:out value="28"></c:out></td>
   </tr>
  </c:forEach>
 </table>
