@@ -114,15 +114,14 @@ public class HomeController {
 		 }
 	   
 	}
-//	@PostMapping("/upvvote")
-//	public String vote(Model model) {
-//		int counter=0;
-//		
-//		 return "redirect:/home";
-//		
-//	   
-//	}
-//    
+	@PostMapping("/upvvote")
+	public String vote(Model model) {
+		
+		 return "redirect:/home";
+		
+	   
+	}
+    
 	@GetMapping("/show/{id}")
 	 public String show(Model model,@PathVariable("id") Long id,@ModelAttribute("baby") Baby baby,HttpSession session) {
 		Long userId=(Long)session.getAttribute("userId");
