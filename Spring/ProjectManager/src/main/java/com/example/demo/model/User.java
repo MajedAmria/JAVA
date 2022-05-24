@@ -1,7 +1,9 @@
 package com.example.demo.model;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,12 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-    
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 @Entity
 @Table(name="users")
 public class User {
@@ -41,6 +49,11 @@ public class User {
     @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
     private String confirm;
     
+    @Column(updatable=false)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date createdAt;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date updatedAt;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "project_manger", 
@@ -49,6 +62,9 @@ public class User {
     )
     private List<Project> progects;
     
+    @OneToMany(mappedBy="projectLeader", fetch = FetchType.LAZY)
+    private List<Project> projectsLeaded;
+
     public User() {
     	
     }
@@ -109,7 +125,23 @@ public class User {
 		this.progects = progects;
 	}
     
-    
+	public List<Project> getProjectsLeaded() {
+		return projectsLeaded;
+	}
+
+	public void setProjectsLeaded(List<Project> projectsLeaded) {
+		this.projectsLeaded = projectsLeaded;
+	}
+
+	// other getters and setters removed for brevity
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = new Date();
+    }
    
   
 }

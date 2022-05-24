@@ -30,7 +30,7 @@
 	</div>
 	
 	<h1>All projects</h1>
-	
+<a href="/new">new project</a>
 	
   <table class="table table-dark table-striped">
   <tr>
@@ -39,7 +39,7 @@
   <th >Due Date</th>
   <th >Action</th>
   </tr>
-  <c:forEach var="project" items="${projects}">
+  <c:forEach var="project" items="${notcontain}">
   <tr>
   <td><a href=""><c:out value="${project.title}"/></a></td>
   <td><c:out value="${project.user.userName}"/></td>
@@ -52,21 +52,18 @@
  <h3>Your Projects </h3>
   <table class="table table-dark table-striped">
   <tr>
-  <th >ID</th>
-  <th >Title</th>
-  <th >Author Name</th>
-   <th >Owner</th>
-   <th >Action</th>
+  <th >Project</th>
+  <th >Lead</th>
+   <th >Due Date</th>
+   <th >Actions</th>
   </tr>
-  <c:forEach var="book" items="${toreturnbook}">
+  <c:forEach var="pro" items="${contain}">
   <tr>
-  <td>
-	<c:out value="${book.id}"/>
- </td>
-  <td><a href="/show/${book.id}"><c:out value="${book.title}"/></a></td>
-  <td><c:out value="${book.author}"/></td>
-  <td><c:out value="${book.user.userName}"/></td>
-  <td><a href="/return/${book.id}">return</a></td>
+
+  <td><a href="/show/${pro.id}"><c:out value="${pro.title}"/></a></td>
+  <td><c:out value="${pro.leadProject}"/></td>
+  <td><c:out value="${pro.duedate}"/></td>
+  <td><a href="/return/${pro.id}">edit</a></td>
   </tr>
 
  </c:forEach>

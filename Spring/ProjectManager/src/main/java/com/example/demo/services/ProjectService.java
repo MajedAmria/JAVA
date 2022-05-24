@@ -37,6 +37,13 @@ public class ProjectService {
         }
 }
     
+public List<Project> contain(User user){
+	return prorepository.findAllByUsers(user);
+}
+
+public List<Project> notContain(User user){
+	return prorepository.findByUsersByNotContains(user);
+}
 
 	 public Project updateProject(Project project) {
 
