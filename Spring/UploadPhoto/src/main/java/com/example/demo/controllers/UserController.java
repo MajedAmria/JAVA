@@ -1,24 +1,24 @@
 package com.example.demo.controllers;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
+
 
 
 
 import com.example.demo.file.FileUploadUtil;
-import com.example.demo.models.User;
+import com.example.demo.models.Product;
 import com.example.demo.repository.UserRepository;
 
 @Controller
@@ -28,23 +28,23 @@ public class UserController {
     private UserRepository repo;
 
 	@GetMapping("/users")
-	public String index(User user,Model model) {
-		model.addAttribute("showPhoto", user.getPhotos());
-		System.out.println(user);
+	public String index(Model model) {
+		List<Product> products= repo.findAll();
+	model.addAttribute("products", products);
 		return "Photo.jsp";
 	}
 	
     @PostMapping("/users/save")
-    public String saveUser(User user,
-            @RequestParam("image") MultipartFile multipartFile) throws IOException {
+    public String saveUser(Product product,@RequestParam("image") MultipartFile multipartFile) throws IOException {
+ 
          
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        user.setPhotos(fileName);
+        product.setPhotos(fileName);
          
-        User savedUser = repo.save(user);
+        Product savedProduct = repo.save(product);
  
-        String uploadDir = "user-photos" + savedUser.getId();
- 
+        String uploadDir = "user-photos/" + savedProduct.getId();
+		 System.out.println("------->"+savedProduct.getPhotosImagePath());
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         
         return "redirect:/users";
